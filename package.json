@@ -1,7 +1,7 @@
 {
 	"name": "tsdoc-comment",
 	"displayName": "TSDoc Comment",
-	"description": "A tool for converting C style comments into TSDoc style comment",
+	"description": "An extension for converting simple C/C++ style comments into TSDoc style comments",
 	"version": "1.0.0",
 	"publisher": "kingsimba",
 	"icon": "icon/icon.png",
