@@ -26,7 +26,7 @@ name: string;
 age: number;
 ```
 
-![feature X](images/tsdoc-comment.gif)
+![features](images/tsdoc-comment.gif)
 
 ## How to Use
 

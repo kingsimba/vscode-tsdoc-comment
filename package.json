@@ -2,12 +2,12 @@
 	"name": "tsdoc-comment",
 	"displayName": "TSDoc Comment",
 	"description": "An extension for converting simple C/C++ style comments into TSDoc style comments",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publisher": "kingsimba",
 	"icon": "icon/icon.png",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/kingsimba/vscode-extension-tsdoc-comment.git"
+		"url": "https://github.com/kingsimba/vscode-tsdoc-comment.git"
 	},
 	"engines": {
 		"vscode": "^1.30.0"
