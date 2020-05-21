@@ -1,0 +1,17 @@
+{
+    "editor.formatOnSave": true,
+    "cSpell.words": [
+        "kingsimba",
+        "tsdoc"
+    ],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "node_modules": true
+    },
+    "mochaExplorer.files": "src/**/*.spec.ts",
+    "mochaExplorer.require": "ts-node/register"
+}

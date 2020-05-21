@@ -1,0 +1,46 @@
+{
+	"name": "tsdoc-comment",
+	"displayName": "TSDoc Comment",
+	"description": "A tool for converting C style comments into TSDoc style comment",
+	"version": "1.0.0",
+	"publisher": "kingsimba",
+	"icon": "icon/icon.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kingsimba/vscode-extension-tsdoc-comment.git"
+	},
+	"engines": {
+		"vscode": "^1.30.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.tsdocCommentConvert"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.tsdocCommentConvert",
+				"title": "TSDoc Comment: convert selected text into TSDoc style comment"
+			}
+		]
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/chai": "^4.2.11",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^8.10.25",
+		"chai": "^4.2.0",
+		"mocha": "^7.1.2",
+		"ts-node": "^8.10.1",
+		"tslint": "^6.1.2",
+		"typescript": "^3.9.3",
+		"vscode": "^1.1.37"
+	},
+	"dependencies": {}
+}
