@@ -11,7 +11,8 @@ Convert:
 // And will be converted into
 // TSDoc style comment
 name: string;
-age: number; // this a single line comment
+@Expose({name: 'len'})
+length: number; // this a single line comment
 ```
 
 Into:
@@ -23,7 +24,8 @@ Into:
  */
 name: string;
 /** this a single line comment */
-age: number;
+@Expose({name: 'len'})
+length: number;
 ```
 
 ![features](images/tsdoc-comment.gif)
@@ -37,11 +39,16 @@ age: number;
 
 MIT.
 
-## Resource code
+## Code Repository
 
 https://github.com/kingsimba/vscode-tsdoc-comment
 
 ## Release Notes
+
+### 1.1.0
+
+- Support `///< COMMENT` style single line comment.
+- Put comment before TypeScript annotations.
 
 ### 1.0.0
 

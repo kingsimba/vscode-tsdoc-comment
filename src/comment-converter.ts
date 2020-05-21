@@ -11,18 +11,19 @@ export class CommentConverter {
         for (this.lineIndex = 0; this.lineIndex < lines.length; this.lineIndex++) {
             const line = lines[this.lineIndex];
 
-            // one line comment
-            const m = line.match(/(\s*)([^\s].*)\/\/([^\/]*)/);
+            // one line comment, '//' or '///<'
+            const m = line.match(/(\s*)([^\s].*?)\/\/(\/<)?([^\/]*)$/);
             if (m != undefined) {
                 const indent = m[1];
                 const code = m[2].trimRight();
-                let comment = m[3];
-                if (comment.startsWith('/<')) {
-                    // for '///< COMMENT' style comment
-                    comment = comment.slice(2);
+                let comment = m[4];
+                if (comment.startsWith(' ')) {
+                    comment = comment.slice(1);
                 }
-                comment = comment.trim();
-                this.newLines.push(`${indent}/** ${comment.trim()} */`);
+                comment = comment.trimRight();
+                // skip annotations like '@Expose()'
+                const insertPosition = this.lookBackForAnnotation(indent);
+                this.newLines.splice(insertPosition, 0, `${indent}/** ${comment.trim()} */`);
                 this.newLines.push(indent + code);
             } else if (this.handleMultilineComment()) {
             } else {
@@ -31,6 +32,23 @@ export class CommentConverter {
         }
 
         return this.newLines;
+    }
+
+    private lookBackForAnnotation(indent: string) {
+        let i;
+        for (i = this.newLines.length - 1; i != -1; i--) {
+            const line = this.newLines[i];
+            // same indent and starts with @
+            if (line.length > indent.length + 2
+                && line.slice(0, indent.length) === indent
+                && line[indent.length] == '@') {
+                // it must be an annotation
+                continue;
+            }
+            break;
+        }
+
+        return i + 1;
     }
 
     private handleMultilineComment(): boolean {

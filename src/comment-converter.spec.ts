@@ -73,4 +73,29 @@ describe("CommentConverter", () => {
             '        birthYear: number',
         ].join('\n'));
     });
+
+    it("can handle ///< COMMENT", () => {
+        const lines = converter.convertComment([
+            '    tollbooth: Tollbooth;     ///< COMMENT'
+        ]);
+        expect(lines.join('\n')).equals([
+            '    /** COMMENT */',
+            '    tollbooth: Tollbooth;'
+        ].join('\n'));
+    });
+
+    it("can handle decorators well", () => {
+        const lines = converter.convertComment([
+            '    age: number;',
+            '    @_if((o: Maneuver) => o.mnTy == ManeuverType.passTollbooth)',
+            '    tollbooth: Tollbooth;     // 收费站详情'
+        ]);
+        expect(lines.join('\n')).equals([
+            '    age: number;',
+            '    /** 收费站详情 */',
+            '    @_if((o: Maneuver) => o.mnTy == ManeuverType.passTollbooth)',
+            '    tollbooth: Tollbooth;'
+        ].join('\n'));
+    });
+
 });
