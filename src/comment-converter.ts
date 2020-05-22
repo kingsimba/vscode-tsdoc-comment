@@ -3,6 +3,11 @@ export class CommentConverter {
     private lineIndex: number;
     private newLines: string[] = [];
 
+    /**
+     * The main function of the converter
+     * @param lines lines of code
+     * @returns generated lines
+     */
     convertComment(lines: string[]): string[] {
         this.lines = lines;
         this.lineIndex = 0;
@@ -34,7 +39,12 @@ export class CommentConverter {
         return this.newLines;
     }
 
-    private lookBackForAnnotation(indent: string) {
+    /**
+     * Look back into newly generated lines and find well aligned TypeScript annotation
+     * @param indent a string contains spaces
+     * @returns the line index of the first annotation
+     */
+    private lookBackForAnnotation(indent: string): number {
         let i;
         for (i = this.newLines.length - 1; i != -1; i--) {
             const line = this.newLines[i];
@@ -51,6 +61,19 @@ export class CommentConverter {
         return i + 1;
     }
 
+    /**
+     * Try to consume lines and generate new lines for multi line comments.
+     *
+     * Like this one:
+     *
+     * ```ts
+     * // This is a multi-line
+     * // comment.
+     * runCommand();
+     * ```
+     *
+     * @returns true if one or more lines are successfully consumed.
+     */
     private handleMultilineComment(): boolean {
         const startIndex = this.lineIndex;
         const comments = [];
