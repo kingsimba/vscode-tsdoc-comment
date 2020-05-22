@@ -84,7 +84,7 @@ describe("CommentConverter", () => {
         ].join('\n'));
     });
 
-    it("can handle decorators well", () => {
+    it("can handle decorators", () => {
         const lines = converter.convertComment([
             '    age: number;',
             '    @_if((o: Maneuver) => o.mnTy == ManeuverType.passTollbooth)',
@@ -98,4 +98,21 @@ describe("CommentConverter", () => {
         ].join('\n'));
     });
 
+    it("can handle URL", () => {
+        const lines = converter.convertComment([
+            '    mn: string	// It contains URL https://example.com/page.html ',
+            '        // This is',
+            '        // the year of birth. It contains URL https://example.com/page.html',
+            '        birthYear: number'
+        ]);
+        expect(lines.join('\n')).equals([
+            '    /** It contains URL https://example.com/page.html */',
+            '    mn: string',
+            '        /**',
+            '         * This is',
+            '         * the year of birth. It contains URL https://example.com/page.html',
+            '         */',
+            '        birthYear: number',
+        ].join('\n'));
+    });
 });

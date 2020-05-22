@@ -45,6 +45,10 @@ https://github.com/kingsimba/vscode-tsdoc-comment
 
 ## Release Notes
 
+### 1.1.1
+
+- Bug fix: Can handle URL in comments correctly.
+
 ### 1.1.0
 
 - Support `///< COMMENT` style single line comment.

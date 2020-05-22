@@ -12,7 +12,7 @@ export class CommentConverter {
             const line = lines[this.lineIndex];
 
             // one line comment, '//' or '///<'
-            const m = line.match(/(\s*)([^\s].*?)\/\/(\/<)?([^\/]*)$/);
+            const m = line.match(/(\s*)([^\s].*?)\/\/(\/<)?([^\/].*)$/);
             if (m != undefined) {
                 const indent = m[1];
                 const code = m[2].trimRight();

@@ -13,5 +13,6 @@
         "node_modules": true
     },
     "mochaExplorer.files": "src/**/*.spec.ts",
-    "mochaExplorer.require": "ts-node/register"
+    "mochaExplorer.require": "ts-node/register",
+    "restructuredtext.confPath": ""
 }
